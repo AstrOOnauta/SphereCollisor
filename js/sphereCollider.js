@@ -1,4 +1,6 @@
 
+window.alert("Bem-vindo ao Colisor de esferas! Utilize as setas direcionais para mover o círculo maior para pegar o ponto brilhante! Vença quando atingir 40pontos!")
+
 var moveX = 0
 var moveY = 0
 var positionX = Math.random()*800
@@ -60,6 +62,8 @@ function enterFrame(){
     ball1.style.top = positionY + "px"
     ball2.style.left = positionX2 + "px"
     ball2.style.top = positionY2 + "px"
+    ball1.style.width = width1 + "px"
+    ball1.style.height = height1 + "px"
 }
 
 function checkCollision(){
@@ -72,11 +76,14 @@ function checkCollision(){
             ball1.y + ball1.height > ball2.y){
                 positionX2 = Math.random()*900
                 positionY2 = Math.random()*600
+                width1 += 5
+                height1 += 5
                 score = score + 1
+                velocity += 0.08
                 document.getElementById("score").innerHTML= score
-                if(score == 40){
-                    alert("Você venceu!")
-                    window.location.reload()
-                }
+                    if(score == 40){
+                        alert("Você venceu!")
+                        window.location.reload()
+                    }
         }
 }
