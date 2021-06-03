@@ -1,0 +1,18 @@
+#ball1{
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 200px;
+    background: rgb(238,174,174);
+    background: linear-gradient(260deg, rgba(238,174,174,1) 0%, rgba(255,0,0,1) 100%);
+    box-shadow: 0 4px 20px 4px white;
+    position: absolute;
+}
+#ball2{
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid black;
+    position: absolute;
+    box-shadow: 0 4px 20px 4px white;
+}
