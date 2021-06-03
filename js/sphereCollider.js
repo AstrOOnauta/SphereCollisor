@@ -8,6 +8,7 @@ var positionY2 = Math.random()*500
 var width1 = 50
 var height1 = 50
 var velocity = 1
+var score = 0;
 var ball1 = document.getElementById("ball1")
 var ball2 = document.getElementById("ball2")
 document.addEventListener("keydown", start)
@@ -71,5 +72,11 @@ function checkCollision(){
             ball1.y + ball1.height > ball2.y){
                 positionX2 = Math.random()*900
                 positionY2 = Math.random()*600
+                score = score + 1
+                document.getElementById("score").innerHTML= score
+                if(score == 40){
+                    alert("Você venceu!")
+                    window.location.reload()
+                }
         }
 }
