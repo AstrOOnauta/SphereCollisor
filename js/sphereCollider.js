@@ -16,6 +16,7 @@ document.addEventListener("keyup", stop)
 
 setInterval(enterFrame, 1)
 setInterval(randomColor, 200)
+setInterval(checkCollision, 100)
 
 function randomColor(){
     var r = Math.floor(Math.random()*255)
@@ -58,4 +59,17 @@ function enterFrame(){
     ball1.style.top = positionY + "px"
     ball2.style.left = positionX2 + "px"
     ball2.style.top = positionY2 + "px"
+}
+
+function checkCollision(){
+        var ball1 = {x: positionX, y: positionY, width: width1, height: height1}
+        var ball2 = {x: positionX2, y: positionY2, width: 20, height: 20}
+        //collision detected
+        if(ball1.x < ball2.x + ball2.width &&
+            ball1.x + ball1.width > ball2.x && 
+            ball1.y < ball2.y + ball2.height &&
+            ball1.y + ball1.height > ball2.y){
+                positionX2 = Math.random()*900
+                positionY2 = Math.random()*600
+        }
 }
