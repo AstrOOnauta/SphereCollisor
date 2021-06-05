@@ -1,12 +1,12 @@
 
-window.alert("Bem-vindo ao Colisor de esferas! Utilize as setas direcionais para mover o círculo maior para pegar o ponto brilhante! Vença quando atingir 40pontos!")
+window.alert("Bem-vindo ao Colisor de esferas! Utilize as setas direcionais para mover o esfera grande e tentar pegar o ponto brilhante! Vença quando atingir 30pontos!")
 
 var moveX = 0
 var moveY = 0
-var positionX = Math.random()*800
-var positionY = Math.random()*500
-var positionX2 = Math.random()*800
-var positionY2 = Math.random()*500
+var positionX = Math.random()*300
+var positionY = Math.random()*600
+var positionX2 = Math.random()*300
+var positionY2 = Math.random()*600
 var width1 = 50
 var height1 = 50
 var velocity = 1
@@ -16,11 +16,12 @@ var ball2 = document.getElementById("ball2")
 document.addEventListener("keydown", start)
 document.addEventListener("keyup", stop)
 
-
+//events control
 setInterval(enterFrame, 1)
 setInterval(randomColor, 200)
 setInterval(checkCollision, 100)
 
+//shiny color system in ball2
 function randomColor(){
     var r = Math.floor(Math.random()*255)
     var g = Math.floor(Math.random()*255)
@@ -29,6 +30,33 @@ function randomColor(){
     ball2.style.backgroundColor="rgb("+r+","+g+","+b+", "+a+")"
 }
 
+//moviment system using the direction arrows in the display
+function startTouchLeft(){
+    moveX = -1
+}
+function stopTouchLeft(){
+    moveX = 0
+}
+function startTouchUp(){
+    moveY = -1
+}
+function stopTouchUp(){
+    moveY = 0
+}
+function startTouchRight(){
+    moveX = 1
+}
+function stopTouchRight(){
+    moveX = 0
+}
+function startTouchDown(){
+    moveY = 1
+}
+function stopTouchDown(){
+    moveY = 0
+}
+
+//moviment system using the direction arrows from keyboard
 function start(){
     var keyboard = event.keyCode;
     if(keyboard==37){
@@ -41,7 +69,6 @@ function start(){
         moveY = 1
     }
 }
-
 function stop(){
     var keyboard = event.keyCode;
     if(keyboard==37){
@@ -55,6 +82,7 @@ function stop(){
     }
 }
 
+//load randomly the balls in the page, update the moviment, size and velocity in the bigball (ball1)
 function enterFrame(){
     positionX = positionX + (moveX*velocity)
     positionY = positionY + (moveY*velocity)
@@ -66,22 +94,22 @@ function enterFrame(){
     ball1.style.height = height1 + "px"
 }
 
+//collision detection system between the bigball (ball1) and the shinyball (ball2)
 function checkCollision(){
         var ball1 = {x: positionX, y: positionY, width: width1, height: height1}
         var ball2 = {x: positionX2, y: positionY2, width: 20, height: 20}
-        //collision detected
         if(ball1.x < ball2.x + ball2.width &&
             ball1.x + ball1.width > ball2.x && 
             ball1.y < ball2.y + ball2.height &&
             ball1.y + ball1.height > ball2.y){
-                positionX2 = Math.random()*900
+                positionX2 = Math.random()*300
                 positionY2 = Math.random()*600
                 width1 += 5
                 height1 += 5
                 score = score + 1
-                velocity += 0.08
+                velocity += 0.1
                 document.getElementById("score").innerHTML= score
-                    if(score == 40){
+                    if(score == 30){
                         alert("Você venceu!")
                         window.location.reload()
                     }

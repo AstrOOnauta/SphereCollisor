@@ -1,27 +1,29 @@
 body{
-    background-image: url("../img/backgorundgame.jpg");
-    background-repeat: no-repeat;
+    background-image: url("../img/backgorundgame.png");
+    background-repeat: repeat;
     background-attachment: fixed;
-    background-size:100% 140%;
+    background-size: 100%;
     overflow: hidden;
 }
 #ball1{
     width: 50px;
     height: 50px;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 200px;
     background: rgb(238,174,174);
     background: linear-gradient(260deg, rgba(238,174,174,1) 0%, rgba(255,0,0,1) 100%);
     box-shadow: 0 4px 20px 4px white;
     position: absolute;
+    overflow: hidden;
 }
 #ball2{
     width: 20px;
     height: 20px;
     border-radius: 20px;
-    border: 1px solid black;
+    border: 2px solid black;
     position: absolute;
     box-shadow: 0 4px 20px 4px white;
+    overflow: hidden;
 }
 #score {
     position: fixed;
@@ -36,4 +38,56 @@ body{
     color: green;
     font-size: 20px;
     line-height: 1.8;
-    }
+    overflow: hidden;
+}
+#containerArrows{
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    z-index: 9;
+    background-color: black;
+    opacity: 60%;
+    border-radius: 5px;
+    box-shadow: 0 4px 20px 4px rgba(0, 20, 60, .5), 0 4px 80px -8px rgba(0, 20, 60, 1);
+}
+#left{
+    width: 50px;
+    height: 50px;
+    font-size: 0px;
+    background-image: url('../img/leftarrow.png');
+    position: absolute;
+    right: 100px;
+    z-index: 10;
+    top: 33%;
+}
+#up{
+    width: 50px;
+    height: 50px;
+    font-size: 0px;
+    background-image: url('../img/uparrow.png');
+    position: absolute;
+    right: 35%;
+    z-index: 10;
+}
+#right{
+    width: 50px;
+    height: 50px;
+    font-size: 0px;
+    background-image: url('../img/rightarrow.png');
+    position: absolute;
+    right: 0px;
+    z-index: 10;
+    top: 33%;
+}
+#down{
+    width: 50px;
+    height: 50px;
+    font-size: 0px;
+    background-image: url('../img/downarrow.png');
+    position: absolute;
+    right: 35%;
+    z-index: 10;
+    top: 65%;
+}
