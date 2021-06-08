@@ -10,16 +10,17 @@
 </head>
 <body>
     <div id="containerGame">
+        <div id="score">0</div>
+        <div id="containerArrows">
+            <div id="left" ontouchstart="startTouchLeft()" ontouchend="stopTouchLeft()" onmousedown="startTouchLeft()" onmouseup="stopTouchLeft()"></div>
+            <div id="up" ontouchstart="startTouchUp()" ontouchend="stopTouchUp()" onmousedown="startTouchUp()" onmouseup="stopTouchUp()"></div>
+            <div id="right" ontouchstart="startTouchRight()" ontouchend="stopTouchRight()" onmousedown="startTouchRight()" onmouseup="stopTouchRight()"></div>
+            <div id="down" ontouchstart="startTouchDown()" ontouchend="stopTouchDown()" onmousedown="startTouchDown()" onmouseup="stopTouchDown()"></div>
+        </div>
     </div>
     <div id="ball1"></div>
     <div id="ball2"></div>
-    <div id="score">0</div>
-    <div id="containerArrows">
-        <div id="left" ontouchstart="startTouchLeft()" ontouchend="stopTouchLeft()" onmousedown="startTouchLeft()" onmouseup="stopTouchLeft()"></div>
-        <div id="up" ontouchstart="startTouchUp()" ontouchend="stopTouchUp()" onmousedown="startTouchUp()" onmouseup="stopTouchUp()"></div>
-        <div id="right" ontouchstart="startTouchRight()" ontouchend="stopTouchRight()" onmousedown="startTouchRight()" onmouseup="stopTouchRight()"></div>
-        <div id="down" ontouchstart="startTouchDown()" ontouchend="stopTouchDown()" onmousedown="startTouchDown()" onmouseup="stopTouchDown()"></div>
-    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript" src="./js/sphereCollider.js"></script>

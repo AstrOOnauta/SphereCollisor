@@ -8,7 +8,7 @@ body{
 }
 #containerGame{
     width: 100%;
-    height: 100vh;
+    height: 98vh;
     background-color: black;
     opacity: 50%;
     position: absolute;
@@ -35,7 +35,6 @@ body{
     overflow: hidden;
 }
 #score {
-    position: fixed;
     top: 0;
     right: 0;
     width: 80px;
@@ -47,7 +46,7 @@ body{
     color: green;
     font-size: 20px;
     line-height: 1.8;
-    overflow: hidden;
+    position: absolute;
 }
 #containerArrows{
     right: 0;
@@ -55,12 +54,11 @@ body{
     position: fixed;
     width: 150px;
     height: 150px;
-    z-index: 9;
     background-color: black;
-    opacity: 60%;
     border-radius: 5px;
     box-shadow: 0 4px 20px 4px rgba(0, 20, 60, .5), 0 4px 80px -8px rgba(0, 20, 60, 1);
     overflow: hidden;
+    position: absolute;
 }
 #left{
     width: 50px;
@@ -69,7 +67,6 @@ body{
     background-image: url('../img/leftarrow.png');
     position: absolute;
     right: 100px;
-    z-index: 10;
     top: 33%;
 }
 #up{
@@ -79,7 +76,6 @@ body{
     background-image: url('../img/uparrow.png');
     position: absolute;
     right: 35%;
-    z-index: 10;
 }
 #right{
     width: 50px;
@@ -88,7 +84,6 @@ body{
     background-image: url('../img/rightarrow.png');
     position: absolute;
     right: 0px;
-    z-index: 10;
     top: 33%;
 }
 #down{
@@ -98,6 +93,5 @@ body{
     background-image: url('../img/downarrow.png');
     position: absolute;
     right: 35%;
-    z-index: 10;
     top: 65%;
 }
