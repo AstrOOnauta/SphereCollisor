@@ -1,5 +1,4 @@
-
-window.alert("Bem-vindo ao Colisor de esferas! Utilize as setas direcionais para mover a esfera grande e tentar pegar o ponto brilhante! Vença quando atingir 30pontos!")
+window.alert("Bem-vindo ao Colisor de Esferas! \n\nPegue a esfera brilhante 30 vezes e vença o jogo!")
 
 var moveX = 0
 var moveY = 0
@@ -9,24 +8,51 @@ var positionX2 = Math.random()*300
 var positionY2 = Math.random()*550
 var width1 = 50
 var height1 = 50
-var velocity = 1
+var width2 = 40
+var height2 = 40
+var velocity = 6
 var score = 0;
+var time;
+var mainball = document.getElementById("mainball")
 var ball1 = document.getElementById("ball1")
 var ball2 = document.getElementById("ball2")
+var square = document.getElementById("square")
 var container = document.getElementById("containerGame")
 var containerW = container.offsetWidth
 var containerH = container.offsetHeight
-var ball1W = ball1.offsetWidth
-var ball1H = ball1.offsetHeight
+var mainballW = mainball.offsetWidth
+var mainballH = mainball.offsetHeight
 var ball2W = ball2.offsetWidth
 var ball2H = ball2.offsetHeight
-document.addEventListener("keydown", start)
-document.addEventListener("keyup", stop)
 
 //events control
-setInterval(enterFrame, 1)
 setInterval(randomColor, 200)
-setInterval(checkCollision, 100)
+setInterval(checkCollision, 1)
+setInterval(teleport, 1)
+
+//Load support for the game work
+function start(){
+    document.addEventListener("keydown", startMove)
+    document.addEventListener("keyup", stopMove)
+    time = requestAnimationFrame(enterFrame)
+}
+//load randomly the balls in the page and update the moviment, size and velocity in the bigball (mainball)
+function enterFrame(){
+    positionX = positionX + (moveX*velocity)
+    positionY = positionY + (moveY*velocity)
+    mainball.style.left = positionX + "px"
+    mainball.style.top = positionY + "px"
+    mainball.style.width = width1 + "px"
+    mainball.style.height = height1 + "px"
+    square.style.width = width2 + "px"
+    square.style.height = height2 + "px"
+    ball1.style.width = width1 + "px"
+    ball1.style.height = height1 + "px"
+    ball2.style.left = positionX2 + "px"
+    ball2.style.top = positionY2 + "px"
+
+    requestAnimationFrame(enterFrame)
+}
 
 //shiny color system in ball2
 function randomColor(){
@@ -36,165 +62,106 @@ function randomColor(){
     var a = Math.random()
     ball2.style.backgroundColor="rgb("+r+","+g+","+b+", "+a+")"
 }
-
-//moviment system using the direction arrows in the display
-function startTouchLeft(){
-    if(positionX<=ball1W){
-        moveX = 0
-        positionX = 0
-    }else{
-        moveX = -1  
-    }
-}
-function stopTouchLeft(){
-    moveX = 0
-    if(positionX<=ball1W){
-        moveX = 0
-        positionX = 0
-    }
-}
-function startTouchUp(){
-    if(positionY<=ball1H){
-        moveY = 0
-        positionY = 0
-    }else {
-        moveY = -1
-    }
-}
-function stopTouchUp(){
-    moveY = 0
-    if(positionY<=ball1H){
-        moveY = 0
-        positionY = 0
-    }
-}
-function startTouchRight(){
-    if(positionX >= (containerW-ball1W)){
-        moveX = 0
-        positionX = (containerW-ball1W)
-    }else{
-        moveX = 1
-    }
-}
-function stopTouchRight(){
-    moveX = 0
-    if(positionX >= (containerW-ball1W)){
-        moveX = 0
-        positionX = (containerW-ball1W)
-    }
-}
-function startTouchDown(){
-    if(positionY >= (containerH-ball1H)){
-        moveY = 0
-        positionY = (containerH-ball1H)
-    }else{
-        moveY = 1
-    }
-}
-function stopTouchDown(){
-    moveY = 0
-    if(positionY >= (containerH-ball1H)){
-        moveY = 0
-        positionY = (containerH-ball1H)
-    }
-}
-
 //moviment system using the direction arrows from keyboard
-function start(){
+function startMove(event){
     var keyboard = event.keyCode;
     var bigball = {x: positionX, y: positionY, width: width1, height: height1}
     if(keyboard==37){
-        if(positionX<=ball1W){
-            moveX = 0
-            positionX = 0
-        }else{
-            moveX = -1  
-        }
+        moveX = -1 
     }else if(keyboard == 38){
-        if(positionY<=ball1H){
-            moveY = 0
-            positionY = 0
-        }else {
-            moveY = -1
-        }
+        moveY = -1
     }else if(keyboard == 39){
-        if(positionX >= (containerW-ball1W)){
-            moveX = 0
-            positionX = (containerW-ball1W) - (width1*0.8)
-        }else{
-            moveX = 1
-        }
+        moveX = 1
     }else if(keyboard == 40){
-        if(positionY >= (containerH-ball1H)){
-            moveY = 0
-            positionY = (containerH-ball1H) - (height1*0.8)
-        }else{
-            moveY = 1
-        }
+        moveY = 1
     }
 }
-function stop(){
+
+function stopMove(event){
     var keyboard = event.keyCode;
     if(keyboard==37){
         moveX = 0
-        if(positionX<=ball1W){
-            moveX = 0
-            positionX = 0
-        }
     }else if(keyboard == 38){
         moveY = 0
-        if(positionY<=ball1H){
-            moveY = 0
-            positionY = 0
-        }
     }else if(keyboard == 39){
         moveX = 0
-        if(positionX >= (containerW-ball1W)){
-            moveX = 0
-            positionX = (containerW-ball1W) - (width1*0.8)
-        }
     }else if(keyboard == 40){
         moveY = 0
-        if(positionY >= (containerH-ball1H)){
-            moveY = 0
-            positionY = (containerH-ball1H) - (height1*0.8)
-        }
+
     }
 }
 
-//load randomly the balls in the page, update the moviment, size and velocity in the bigball (ball1)
-function enterFrame(){
-    positionX = positionX + (moveX*velocity)
-    positionY = positionY + (moveY*velocity)
-    ball1.style.left = positionX + "px"
-    ball1.style.top = positionY + "px"
-    ball2.style.left = positionX2 + "px"
-    ball2.style.top = positionY2 + "px"
-    ball1.style.width = width1 + "px"
-    ball1.style.height = height1 + "px"
+//moviment system using the direction arrows in the display
+function startTouchLeft(){
+    moveX = -1 
+}
+function stopTouchLeft(){
+    moveX = 0
+}
+function startTouchUp(){
+    moveY = -1
+}
+function stopTouchUp(){
+    moveY = 0
+}
+function startTouchRight(){
+    moveX = 1
+}
+function stopTouchRight(){
+    moveX = 0
+}
+function startTouchDown(){
+    moveY = 1
+}
+function stopTouchDown(){
+    moveY = 0
 }
 
-//collision detection system between the bigball (ball1) and the shinyball (ball2)
-function checkCollision(){
-        var ball1 = {x: positionX, y: positionY, width: width1, height: height1}
-        var ball2 = {x: positionX2, y: positionY2, width: 20, height: 20}
-        if(ball1.x < ball2.x + ball2.width &&
-            ball1.x + ball1.width > ball2.x && 
-            ball1.y < ball2.y + ball2.height &&
-            ball1.y + ball1.height > ball2.y){
-                positionX2 = Math.random()*1000
-                    if(positionX2 >= (containerW-ball2W) ){
-                        positionX2 = (containerW-ball2W)
-                    }
-                positionY2 = Math.random()*550
-                width1 += 5
-                height1 += 5
-                score = score + 1
-                velocity += 0.1
-                document.getElementById("score").innerHTML= score
-                    if(score == 30){
-                        alert("Você venceu!")
-                        window.location.reload()
-                    }
-        }
+//Teleport the bigball when it touch the game border
+function teleport(){
+    if(positionX<(mainballW-60)){
+        moveX = -1
+        positionX = (containerW-mainballW)
+    }
+    if(positionY<(mainballH-60)){
+        moveY = -1
+        positionY = (containerH-mainballH)
+    }
+    if(positionX >(containerW-mainballW)){
+        moveX = 1
+        positionX = 0
+    }
+    if(positionY >(containerH-mainballH)){
+        moveY = 1
+        positionY = 0
+    }
 }
+
+//collision detection system between the bigball (mainball) and the shinyball (ball2)
+function checkCollision(){
+    var mainball = {x: positionX, y: positionY, width: width1, height: height1}
+    var ball2 = {x: positionX2, y: positionY2, width: 20, height: 20}
+    if(mainball.x < ball2.x + ball2.width &&
+        mainball.x + mainball.width > ball2.x && 
+        mainball.y < ball2.y + ball2.height &&
+        mainball.y + mainball.height > ball2.y){
+            positionX2 = Math.random()*1000
+                if(positionX2 >= (containerW-ball2W) ){
+                    positionX2 = (containerW-ball2W)
+                }
+            positionY2 = Math.random()*550
+            width1 += 3
+            height1 += 3
+            width2 += 3
+            height2 += 3
+            score = score + 1
+            velocity += 0.1
+            document.getElementById("score").innerHTML= score
+                if(score == 30){
+                    alert("Você venceu!")
+                    window.location.reload()
+                }
+    }
+}
+
+window.addEventListener("load", start)

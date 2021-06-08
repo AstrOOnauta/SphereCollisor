@@ -1,7 +1,6 @@
 body{
     background-image: url("../img/backgorundgame.png");
     background-repeat: repeat;
-    background-attachment: fixed;
     background-size: 100%;
     overflow: hidden;
     position: relative;
@@ -14,16 +13,30 @@ body{
     position: absolute;
     overflow: hidden;
 }
+#mainball{
+    border: 1px solid black;
+    position: absolute;
+    border-radius: 50px;
+    animation-name: mainball-rotation;
+    animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+    overflow: hidden;
+    box-shadow: 0 4px 20px 4px white;
+}
+#square{
+    position: absolute;
+	background-color: black;
+    z-index: 9;
+}
 #ball1{
-    width: 50px;
-    height: 50px;
-    border: 2px solid black;
     border-radius: 200px;
     background: rgb(238,174,174);
     background: linear-gradient(260deg, rgba(238,174,174,1) 0%, rgba(255,0,0,1) 100%);
-    box-shadow: 0 4px 20px 4px white;
     position: absolute;
     overflow: hidden;
+    z-index: 10;
+    box-shadow: 0 4px 20px 4px black;
 }
 #ball2{
     width: 20px;
@@ -40,7 +53,7 @@ body{
     width: 80px;
     height: 40px;
     border-radius: 5px;
-    box-shadow: 0 4px 20px 4px rgba(0, 20, 60, .5), 0 4px 80px -8px rgba(0, 20, 60, 1);
+    box-shadow: 0 4px 20px 4px rgba(0, 20, 60, 1), 0 4px 80px -8px rgba(0, 20, 60, 1);
     background-color: white;
     text-align: center;
     color: green;
@@ -51,12 +64,11 @@ body{
 #containerArrows{
     right: 0;
     bottom: 0;
-    position: fixed;
     width: 150px;
     height: 150px;
     background-color: black;
     border-radius: 5px;
-    box-shadow: 0 4px 20px 4px rgba(0, 20, 60, .5), 0 4px 80px -8px rgba(0, 20, 60, 1);
+    box-shadow: 0 4px 20px 4px rgba(0, 20, 60, 1), 0 4px 80px -8px rgba(0, 20, 60, 1);
     overflow: hidden;
     position: absolute;
 }
@@ -94,4 +106,19 @@ body{
     position: absolute;
     right: 35%;
     top: 65%;
+}
+@keyframes mainball-rotation {
+	0%   {
+		transform: rotate(0);
+	}
+    
+    100% {
+		transform: rotate(360deg);
+	}
+/* 	from {
+		transform: rotate(0);
+	}
+	to {
+		 transform: rotate(360);
+	} */
 }
