@@ -1,18 +1,5 @@
 window.alert("Bem-vindo ao Colisor de Esferas! \n\nPegue a esfera brilhante 30 vezes e vença o jogo!")
 
-var moveX = 0
-var moveY = 0
-var positionX = Math.random()*300
-var positionY = Math.random()*550
-var positionX2 = Math.random()*300
-var positionY2 = Math.random()*550
-var width1 = 50
-var height1 = 50
-var width2 = 40
-var height2 = 40
-var velocity = 6
-var score = 0;
-var time;
 var mainball = document.getElementById("mainball")
 var ball1 = document.getElementById("ball1")
 var ball2 = document.getElementById("ball2")
@@ -24,6 +11,19 @@ var mainballW = mainball.offsetWidth
 var mainballH = mainball.offsetHeight
 var ball2W = ball2.offsetWidth
 var ball2H = ball2.offsetHeight
+var moveX = 0
+var moveY = 0
+var positionX = Math.random()*containerW
+var positionY = Math.random()*(containerH-50)
+var positionX2 = Math.random()*containerW
+var positionY2 = Math.random()*(containerH-50)
+var width1 = 50
+var height1 = 50
+var width2 = 40
+var height2 = 40
+var velocity = 6
+var score = 0;
+var time;
 
 //events control
 setInterval(randomColor, 200)
@@ -145,11 +145,11 @@ function checkCollision(){
         mainball.x + mainball.width > ball2.x && 
         mainball.y < ball2.y + ball2.height &&
         mainball.y + mainball.height > ball2.y){
-            positionX2 = Math.random()*1000
+            positionX2 = Math.random()*containerW
                 if(positionX2 >= (containerW-ball2W) ){
                     positionX2 = (containerW-ball2W)
                 }
-            positionY2 = Math.random()*550
+            positionY2 = Math.random()*(containerH-50)
             width1 += 3
             height1 += 3
             width2 += 3
