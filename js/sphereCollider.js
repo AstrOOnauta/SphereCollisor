@@ -59,13 +59,11 @@ function randomColor(){
     var r = Math.floor(Math.random()*255)
     var g = Math.floor(Math.random()*255)
     var b = Math.floor(Math.random()*255)
-    var a = Math.random()
-    ball2.style.backgroundColor="rgb("+r+","+g+","+b+", "+a+")"
+    ball2.style.backgroundColor="rgb("+r+","+g+","+b+")"
 }
 //moviment system using the direction arrows from keyboard
 function startMove(event){
     var keyboard = event.keyCode;
-    var bigball = {x: positionX, y: positionY, width: width1, height: height1}
     if(keyboard==37){
         moveX = -1 
     }else if(keyboard == 38){
@@ -119,20 +117,16 @@ function stopTouchDown(){
 
 //Teleport the bigball when it touch the game border
 function teleport(){
-    if(positionX<(mainballW-60)){
-        moveX = -1
+    if(positionX<(mainballW)){
         positionX = (containerW-mainballW)
     }
-    if(positionY<(mainballH-60)){
-        moveY = -1
+    if(positionY<(mainballH)){
         positionY = (containerH-mainballH)
     }
     if(positionX >(containerW-mainballW)){
-        moveX = 1
         positionX = 0
     }
     if(positionY >(containerH-mainballH)){
-        moveY = 1
         positionY = 0
     }
 }
@@ -150,10 +144,10 @@ function checkCollision(){
                     positionX2 = (containerW-ball2W)
                 }
             positionY2 = Math.random()*(containerH-50)
-            width1 += 3
-            height1 += 3
-            width2 += 3
-            height2 += 3
+            width1 += 1.25
+            height1 += 1.25
+            width2 += 1
+            height2 += 1
             score = score + 1
             velocity += 0.1
             document.getElementById("score").innerHTML= score
